@@ -6,7 +6,7 @@ import org.example.MyBlog.dto.AddArticleRequest;
 import org.example.MyBlog.repository.BlogRepository;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor  // final or @NotNull 이 붙은 필드의 생성자 추가.
 @Service
 public class BlogService {
     private final BlogRepository blogRepository;
