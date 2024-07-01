@@ -27,14 +27,6 @@ public class BlogApiController {
                 .body(savedArticle);
     }
 
-    @GetMapping("api/articles/{id}")
-    public ResponseEntity<ArticleResponse> findArticle(@PathVariable long id){
-        Article article = blogService.findById(id);
-
-        return ResponseEntity.ok()
-                .body(new ArticleResponse(article));
-    }
-
     @GetMapping("/api/articles")
     public ResponseEntity<List<ArticleResponse>> findAllArticles(){
         List<ArticleResponse> articles = blogService.findAll()
@@ -44,5 +36,21 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
                 .body(articles);
+    }
+
+    @GetMapping("api/articles/{id}")
+    public ResponseEntity<ArticleResponse> findArticle(@PathVariable long id){
+        Article article = blogService.findById(id);
+
+        return ResponseEntity.ok()
+                .body(new ArticleResponse(article));
+    }
+
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable long id){
+        blogService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
     }
 }
