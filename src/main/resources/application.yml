@@ -13,7 +13,6 @@ spring:
     console:
       enabled: true
 
-# jwt
 jwt:
   issuer: ajufresh@gmail.com
   secret_key: study-springboot
