@@ -22,7 +22,7 @@ public class User implements UserDetails{
     @Column(name="id", updatable = false)
     private Long id;
 
-    @Column(name="email",nullable = false,updatable = true)
+    @Column(name="email",nullable = false,unique = true)
     private String email;
 
     @Builder
@@ -48,21 +48,25 @@ public class User implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
+        // 계정 만료 여부
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked(){
+        // 계정 잠금 여부
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired(){
+    public boolean isCredentialsNonExpired() {
+        // 패스워드 만료 여부
         return true;
     }
 
     @Override
     public boolean isEnabled(){
+        // 계정 사용가능 여부
         return true;
     }
 }
