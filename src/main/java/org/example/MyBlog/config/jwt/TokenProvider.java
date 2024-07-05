@@ -34,7 +34,7 @@ public class TokenProvider {
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setIssuer(jwtProperties.getIssuer())
-                .setIssuer(now)
+                .setIssuedAt(now)
                 .setExpiration(expiry)
                 .setSubject(user.getEmail())
                 .claim("id",user.getId())
@@ -45,8 +45,8 @@ public class TokenProvider {
     // JWT 토큰 유효성 검증
     public boolean validToken(String token){
         try{
-            Jwts.parsser()
-                    .setSigninfKey(jwtProperties.getSecretKey())
+            Jwts.parser()
+                    .setSigningKey(jwtProperties.getSecretKey())
                     .parseClaimsJws(token);
             return true;
         } catch (Exception e){
