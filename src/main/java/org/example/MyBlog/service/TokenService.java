@@ -13,6 +13,8 @@ public class TokenService {
     private final TokenProvider tokenProvider;
     private final RefreshTokenService refreshTokenService;
 
+    private final UserService userService;
+
     public String createNewAccessToken(String refreshToken){
 
         // 토큰 유효성 검사.
@@ -22,7 +24,7 @@ public class TokenService {
 
         Long userId = refreshTokenService.findByRefreshToken(refreshToken).getUserId();
 
-        User user = userService.findByid(userId);
+        User user = userService.findById(userId);
 
         return tokenProvider.generateToken(user, Duration.ofHours(1));
     }
